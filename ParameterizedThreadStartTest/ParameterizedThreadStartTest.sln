@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParameterizedThreadStartTest", "ParameterizedThreadStartTest\ParameterizedThreadStartTest.csproj", "{4CCD4BF4-9DCD-4F03-AAB1-2CB4903B8B20}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4CCD4BF4-9DCD-4F03-AAB1-2CB4903B8B20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CCD4BF4-9DCD-4F03-AAB1-2CB4903B8B20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CCD4BF4-9DCD-4F03-AAB1-2CB4903B8B20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CCD4BF4-9DCD-4F03-AAB1-2CB4903B8B20}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {279F01FD-7616-4E61-AF94-7682A0D0BB43}
+	EndGlobalSection
+EndGlobal
