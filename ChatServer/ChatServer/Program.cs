@@ -20,11 +20,14 @@ class Server
             //TcpListener Class를 이용하여 클라이언트의 연결을 받아 들인다.
             TcpListener listener = new TcpListener(ip, 5001);
             listener.Start();
+            //Client Line Check..
+           // new Thread(() => checkline()).Start();
+
             //서버프로그램은 데몬프로그램처럼 늘 기동되어 있어야 하므로 무한루프로
             while (true)
             {
                 Socket socket = listener.AcceptSocket();
-                new Thread(() => chat(socket)).Start();
+                new Thread(() => chat(socket)).Start();                
             }
         }
         catch (Exception e)
@@ -32,6 +35,28 @@ class Server
             Console.WriteLine(e);
         }
     }
+
+    static void checkline()
+    {
+        Encoding encoding = Encoding.GetEncoding("euc-kr");
+        String line;
+        while (true) {
+            if (clientSockets.Count > 0)
+            {
+                foreach (Socket s in clientSockets)
+                {                    
+                    StreamReader reader = new StreamReader(new NetworkStream(s), encoding);
+                    if ((line = readLine(reader, s)) == null)
+                    {
+                       Console.WriteLine($"IP : {s.RemoteEndPoint} Closed Please Reconnect...");
+                       break;
+                    }
+                }
+            }
+        }
+    }
+
+
     //Thread가 실행할 메소드, 인자로 클라이언트 전담 소켓을 받는다.
     static void chat(Socket socket)
     {
@@ -41,7 +66,7 @@ class Server
             clientSockets.Add(socket);
            StreamReader reader = new StreamReader(new NetworkStream(socket), encoding);
             string line;
-            while ((line = readLine(reader)) != null)
+            while ((line = readLine(reader, socket)) != null)
             {
                 Console.WriteLine(line);
                 // ArrayList에 보관된 모든 클라이언트 처리 소켓만큼
@@ -66,7 +91,7 @@ class Server
             socket = null;
         }
     }
-    static string readLine(StreamReader reader)
+    static string readLine(StreamReader reader, Socket socket)
     {
         try
         {
@@ -74,6 +99,8 @@ class Server
         }
         catch
         {
+            Console.WriteLine("Connection Error!");
+            Console.WriteLine($"IP : {socket.RemoteEndPoint} Closed Please Reconnect...");
             return null;
         }
     }
